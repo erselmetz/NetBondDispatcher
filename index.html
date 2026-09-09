@@ -7,17 +7,23 @@
   <link rel="icon" type="image/x-icon" href="Assets/app.ico" />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
   <style>
     :root {
-      --bg: #0b0f17;
-      --card-bg: rgba(22, 30, 46, 0.7);
-      --card-border: rgba(255, 255, 255, 0.08);
-      --accent: #007acc;
-      --accent-hover: #0098ff;
-      --text-main: #f3f4f6;
-      --text-muted: #9ca3af;
-      --green: #10b981;
+      --bg: #f8fafc;
+      --card-bg: #ffffff;
+      --card-border: #e2e8f0;
+      --card-shadow: 0 4px 20px -2px rgba(0, 0, 0, 0.05);
+      --accent: #0284c7;
+      --accent-hover: #0369a1;
+      --text-main: #0f172a;
+      --text-muted: #64748b;
+      --code-bg: #f1f5f9;
+      --code-border: #cbd5e1;
+      --badge-bg: #e0f2fe;
+      --badge-text: #0369a1;
+      --callout-bg: #f0f9ff;
+      --callout-border: #0284c7;
     }
 
     * {
@@ -36,15 +42,15 @@
       flex-direction: column;
     }
 
-    /* Ambient Glow */
+    /* Ambient Subtle Background Light */
     .glow {
       position: absolute;
       top: 0;
       left: 50%;
       transform: translateX(-50%);
-      width: 600px;
-      height: 350px;
-      background: radial-gradient(circle, rgba(0, 122, 204, 0.25) 0%, rgba(11, 15, 23, 0) 70%);
+      width: 700px;
+      height: 380px;
+      background: radial-gradient(circle, rgba(2, 132, 199, 0.12) 0%, rgba(248, 250, 252, 0) 70%);
       z-index: -1;
       pointer-events: none;
     }
@@ -75,40 +81,52 @@
       height: 32px;
     }
 
+    .nav-links {
+      display: flex;
+      gap: 1.5rem;
+      align-items: center;
+    }
+
     .nav-links a {
       color: var(--text-muted);
       text-decoration: none;
       font-size: 0.95rem;
-      font-weight: 500;
+      font-weight: 600;
       transition: color 0.2s;
     }
 
     .nav-links a:hover {
-      color: var(--text-main);
+      color: var(--accent);
     }
 
-    /* Hero Section */
-    .hero {
-      max-width: 900px;
-      margin: 4rem auto 3rem;
+    /* Container */
+    .container {
+      max-width: 1000px;
+      margin: 0 auto;
       padding: 0 1.5rem;
+      width: 100%;
+    }
+
+    /* Hero */
+    .hero {
+      margin: 3.5rem auto 4rem;
       text-align: center;
     }
 
     .badge {
       display: inline-block;
-      padding: 6px 14px;
-      background: rgba(0, 122, 204, 0.15);
-      border: 1px solid rgba(0, 122, 204, 0.35);
+      padding: 6px 16px;
+      background: var(--badge-bg);
+      border: 1px solid rgba(2, 132, 199, 0.2);
       border-radius: 9999px;
-      color: var(--accent-hover);
+      color: var(--badge-text);
       font-size: 0.85rem;
-      font-weight: 600;
+      font-weight: 700;
       margin-bottom: 1.5rem;
     }
 
     .hero h1 {
-      font-size: clamp(2.2rem, 5vw, 3.5rem);
+      font-size: clamp(2.3rem, 5vw, 3.6rem);
       font-weight: 800;
       line-height: 1.2;
       margin-bottom: 1.25rem;
@@ -116,7 +134,7 @@
     }
 
     .hero h1 span {
-      background: linear-gradient(135deg, #0098ff 0%, #38bdf8 100%);
+      background: linear-gradient(135deg, #0284c7 0%, #0369a1 100%);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
     }
@@ -124,7 +142,7 @@
     .hero p {
       font-size: 1.15rem;
       color: var(--text-muted);
-      max-width: 680px;
+      max-width: 720px;
       margin: 0 auto 2.5rem;
     }
 
@@ -149,34 +167,50 @@
 
     .btn-primary {
       background: var(--accent);
-      color: #fff;
-      box-shadow: 0 4px 20px rgba(0, 122, 204, 0.35);
+      color: #ffffff;
+      box-shadow: 0 4px 14px rgba(2, 132, 199, 0.25);
     }
 
     .btn-primary:hover {
       background: var(--accent-hover);
       transform: translateY(-2px);
-      box-shadow: 0 6px 24px rgba(0, 122, 204, 0.5);
+      box-shadow: 0 6px 18px rgba(2, 132, 199, 0.35);
     }
 
     .btn-secondary {
       background: var(--card-bg);
       border: 1px solid var(--card-border);
       color: var(--text-main);
+      box-shadow: var(--card-shadow);
     }
 
     .btn-secondary:hover {
-      background: rgba(255, 255, 255, 0.05);
-      border-color: rgba(255, 255, 255, 0.2);
+      background: #f1f5f9;
+      border-color: #cbd5e1;
     }
 
-    /* Features Grid */
-    .features {
-      max-width: 1100px;
-      margin: 4rem auto;
-      padding: 0 1.5rem;
+    /* Content Section Formatting */
+    section {
+      margin-bottom: 5rem;
+    }
+
+    .section-title {
+      font-size: 1.8rem;
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+      letter-spacing: -0.01em;
+    }
+
+    .section-desc {
+      color: var(--text-muted);
+      margin-bottom: 2rem;
+      font-size: 1rem;
+    }
+
+    /* Cards Grid */
+    .grid-2 {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
       gap: 1.5rem;
     }
 
@@ -184,25 +218,26 @@
       background: var(--card-bg);
       border: 1px solid var(--card-border);
       border-radius: 16px;
-      padding: 2rem;
-      backdrop-filter: blur(12px);
+      padding: 1.75rem;
+      box-shadow: var(--card-shadow);
       transition: border-color 0.2s, transform 0.2s;
     }
 
     .card:hover {
-      border-color: rgba(0, 122, 204, 0.4);
-      transform: translateY(-4px);
+      border-color: var(--accent);
+      transform: translateY(-3px);
     }
 
     .card-icon {
-      font-size: 1.8rem;
+      font-size: 1.75rem;
       margin-bottom: 1rem;
       display: inline-block;
     }
 
     .card h3 {
-      font-size: 1.25rem;
+      font-size: 1.2rem;
       margin-bottom: 0.5rem;
+      color: var(--text-main);
     }
 
     .card p {
@@ -210,14 +245,100 @@
       font-size: 0.95rem;
     }
 
+    /* Instruction Step Blocks */
+    .steps {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .step-item {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 12px;
+      padding: 1.25rem 1.5rem;
+      display: flex;
+      gap: 1.25rem;
+      align-items: flex-start;
+      box-shadow: var(--card-shadow);
+    }
+
+    .step-num {
+      background: var(--badge-bg);
+      color: var(--accent);
+      border: 1px solid rgba(2, 132, 199, 0.3);
+      width: 32px;
+      height: 32px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 8px;
+      font-weight: 700;
+      flex-shrink: 0;
+    }
+
+    .step-content h4 {
+      font-size: 1.05rem;
+      margin-bottom: 0.35rem;
+      color: var(--text-main);
+    }
+
+    .step-content p {
+      color: var(--text-muted);
+      font-size: 0.92rem;
+    }
+
+    .code-box {
+      font-family: 'JetBrains Mono', monospace;
+      background: var(--code-bg);
+      border: 1px solid var(--code-border);
+      padding: 0.6rem 0.9rem;
+      border-radius: 6px;
+      font-size: 0.85rem;
+      color: var(--accent-hover);
+      margin-top: 0.6rem;
+      display: inline-block;
+      font-weight: 600;
+    }
+
+    /* Callout Note */
+    .callout {
+      background: var(--callout-bg);
+      border-left: 4px solid var(--callout-border);
+      padding: 1.25rem;
+      border-radius: 0 12px 12px 0;
+      margin-bottom: 2.5rem;
+      border-top: 1px solid rgba(2, 132, 199, 0.15);
+      border-right: 1px solid rgba(2, 132, 199, 0.15);
+      border-bottom: 1px solid rgba(2, 132, 199, 0.15);
+    }
+
+    .callout h4 {
+      font-size: 1rem;
+      margin-bottom: 0.35rem;
+      color: #0369a1;
+    }
+
+    .callout p {
+      color: #334155;
+      font-size: 0.92rem;
+    }
+
     /* Footer */
     footer {
       margin-top: auto;
       border-top: 1px solid var(--card-border);
-      padding: 2rem 1.5rem;
+      background: #ffffff;
+      padding: 2.5rem 1.5rem;
       text-align: center;
       color: var(--text-muted);
       font-size: 0.9rem;
+    }
+
+    footer a {
+      color: var(--accent);
+      text-decoration: none;
+      font-weight: 600;
     }
   </style>
 </head>
@@ -230,58 +351,144 @@
       <span>NetBond Dispatcher</span>
     </a>
     <div class="nav-links">
+      <a href="#features">Features</a>
+      <a href="#how-to-use">Guide</a>
+      <a href="#installation">Install</a>
       <a href="https://github.com/erselmetz/NetBondDispatcher" target="_blank">GitHub</a>
     </div>
   </nav>
 
-  <main>
-    <section class="hero">
+  <div class="container">
+    <!-- Hero -->
+    <header class="hero">
       <div class="badge">v1.0.0 Stable Release</div>
       <h1>Bond Your Connections.<br /><span>Maximize Throughput.</span></h1>
       <p>
-        Harness LAN and Wi-Fi simultaneously on Windows. Route browser traffic via a round-robin SOCKS5 proxy and accelerate file downloads with multi-adapter chunking.
+        A lightweight Windows utility to utilize multiple active network connections (LAN + Wi-Fi or Dual Wi-Fi) simultaneously. Route browser traffic via a round-robin SOCKS5 proxy and accelerate file downloads with multi-adapter chunking.
       </p>
       <div class="cta-group">
-        <!-- Palitan ang link papunta sa releases download mo -->
         <a href="https://github.com/erselmetz/NetBondDispatcher/releases/latest/download/NetBondDispatcher-Setup.exe" class="btn btn-primary">
           <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path></svg>
-          Download for Windows
+          Download Installer (.exe)
         </a>
         <a href="https://github.com/erselmetz/NetBondDispatcher" target="_blank" class="btn btn-secondary">
-          View Source Code
+          View Repository
         </a>
       </div>
+    </header>
+
+    <!-- Note on Network Behavior -->
+    <div class="callout">
+      <h4>💡 How It Works & Note on Online Gaming</h4>
+      <p>
+        NetBond Dispatcher operates at <strong>Layer 7 (Socket & Application Level)</strong>. Single-socket UDP game connections (like Valorant or Roblox) cannot split individual packets across two IPs without disconnection. However, NetBond allows you to leave your primary LAN adapter dedicated to low-ping gaming while routing browsers, downloads, and live streams through your secondary Wi-Fi adapter.
+      </p>
+    </div>
+
+    <!-- Features -->
+    <section id="features">
+      <h2 class="section-title">Core Capabilities</h2>
+      <p class="section-desc">Engineered for simplicity, low resource usage, and clean socket binding.</p>
+
+      <div class="grid-2">
+        <div class="card">
+          <div class="card-icon">⚡</div>
+          <h3>Parallel Chunk Downloader</h3>
+          <p>Splits large HTTP range requests into parallel chunks, assigning each stream to distinct physical adapters for accelerated combined speed.</p>
+        </div>
+
+        <div class="card">
+          <div class="card-icon">🔄</div>
+          <h3>Local SOCKS5 Dispatcher</h3>
+          <p>Runs locally on 127.0.0.1:10808, intelligently balancing outbound browser or app connections across your active network interfaces via Round-Robin.</p>
+        </div>
+
+        <div class="card">
+          <div class="card-icon">📊</div>
+          <h3>Live Throughput Telemetry</h3>
+          <p>Displays real-time per-adapter and aggregated upload/download speeds directly sampled from Windows network interface statistics.</p>
+        </div>
+
+        <div class="card">
+          <div class="card-icon">🚀</div>
+          <h3>Velopack Auto-Updates</h3>
+          <p>Features silent background update checks straight from official GitHub Releases, keeping your setup up to date effortlessly.</p>
+        </div>
+      </div>
     </section>
 
-    <section class="features">
-      <div class="card">
-        <div class="card-icon">⚡</div>
-        <h3>Multi-Adapter Parallel Downloader</h3>
-        <p>Splits large HTTP range requests into parallel chunks, assigning each stream to distinct physical adapters for accelerated combined speed.</p>
-      </div>
+    <!-- Installation -->
+    <section id="installation">
+      <h2 class="section-title">Installation</h2>
+      <p class="section-desc">Quick setup methods for Windows 10 and 11 systems.</p>
 
-      <div class="card">
-        <div class="card-icon">🔄</div>
-        <h3>Local SOCKS5 Dispatcher</h3>
-        <p>Runs locally on 127.0.0.1:10808, intelligently balancing outbound connections across your active network interfaces using Round-Robin scheduling.</p>
-      </div>
+      <div class="steps">
+        <div class="step-item">
+          <div class="step-num">1</div>
+          <div class="step-content">
+            <h4>Download the Installer (Recommended)</h4>
+            <p>Get <strong>NetBondDispatcher-Setup.exe</strong> from the official Releases page. It sets up shortcuts and integrates seamless automatic updates.</p>
+          </div>
+        </div>
 
-      <div class="card">
-        <div class="card-icon">📊</div>
-        <h3>Live Throughput Telemetry</h3>
-        <p>Real-time per-adapter and aggregated upload/download bandwidth monitoring directly from system interface statistics.</p>
-      </div>
-
-      <div class="card">
-        <div class="card-icon">🚀</div>
-        <h3>Auto-Updates with Velopack</h3>
-        <p>Self-contained application with native background update checks straight from official GitHub Releases.</p>
+        <div class="step-item">
+          <div class="step-num">2</div>
+          <div class="step-content">
+            <h4>Portable / Standalone Option</h4>
+            <p>Download the standalone release archive, extract to any directory, and run <code>NetBondDispatcher.exe</code> without running an installer.</p>
+          </div>
+        </div>
       </div>
     </section>
-  </main>
+
+    <!-- How to Use -->
+    <section id="how-to-use">
+      <h2 class="section-title">How to Use</h2>
+      <p class="section-desc">Simple guides to get your multi-adapter setup running in seconds.</p>
+
+      <div class="steps">
+        <div class="step-item">
+          <div class="step-num">A</div>
+          <div class="step-content">
+            <h4>Using the SOCKS5 Proxy (Browser / Streaming)</h4>
+            <p>
+              1. Open the app and ensure your adapters (e.g., Ethernet + Wi-Fi) show <strong>Up</strong> status in the <em>Network Adapters</em> tab.<br />
+              2. Go to <em>Dashboard</em> or <em>SOCKS5 Proxy</em> and click <strong>Toggle SOCKS5 Proxy</strong>.<br />
+              3. Configure your browser, download manager, or OBS proxy settings to:
+            </p>
+            <div class="code-box">Host: 127.0.0.1 | Port: 10808 (SOCKS5)</div>
+          </div>
+        </div>
+
+        <div class="step-item">
+          <div class="step-num">B</div>
+          <div class="step-content">
+            <h4>Using the Parallel Chunk Downloader</h4>
+            <p>
+              1. Switch to the <strong>Parallel Downloader</strong> tab.<br />
+              2. Paste any direct download link that supports HTTP Range requests (e.g., <code>.mp4</code>, <code>.zip</code>, <code>.bin</code>).<br />
+              3. Select your target save path and number of chunks, then click <strong>Start Download</strong>.
+            </p>
+          </div>
+        </div>
+
+        <div class="step-item">
+          <div class="step-num">C</div>
+          <div class="step-content">
+            <h4>Background & System Tray Operation</h4>
+            <p>
+              Under <em>Settings & Updates</em>, enable <strong>Minimize to system tray when closing window</strong> and <strong>Start automatically with Windows</strong> for a seamless set-and-forget background service.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
 
   <footer>
-    <p>&copy; 2026 NetBond Dispatcher. Released under the MIT License.</p>
+    <div class="container">
+      <p>&copy; 2026 <a href="https://github.com/erselmetz/NetBondDispatcher" target="_blank">NetBond Dispatcher</a>. Built by <a href="https://github.com/erselmetz" target="_blank">erselmetz</a> with C# & .NET Windows Forms under the MIT License.</p>
+    </div>
   </footer>
 </body>
 </html>
