@@ -1,7 +1,7 @@
 # NetBond Dispatcher
 
 <p align="center">
-  <img src="Assets/app.ico" alt="NetBond Dispatcher Logo" width="96" height="96" />
+  <img src="NetBondDispatcher/Assets/app.ico" alt="NetBond Dispatcher Logo" width="96" height="96" />
 </p>
 
 <p align="center">
@@ -52,7 +52,7 @@ By binding outgoing sockets directly to specific local network adapters, it dist
 ## Installation & Setup
 
 ### Method 1: Using the Installer (Recommended)
-1. Go to the [Releases](https://github.com/YOUR_GITHUB_USERNAME/NetBondDispatcher/releases) tab.
+1. Go to the [Releases](https://github.com/erselmetz/NetBondDispatcher/releases) tab.
 2. Download **`NetBondDispatcher-Setup.exe`**.
 3. Run the installer. The app will install and create desktop/start menu shortcuts automatically.
 
