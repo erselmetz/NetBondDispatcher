@@ -1,5 +1,18 @@
-# Build results
-NetBondDispacther/bin/*
-NetBondDispacther/Publish/*
-NetBondDispacther/Releases/*
-NetBondDispacther/obj/*
+# Visual Studio / .NET user files
+.vs/
+*.user
+*.suo
+
+# Build output and intermediate files
+**/bin/
+**/obj/
+
+# Local publish and packaging output
+**/Publish/
+**/Releases/
+**/publish/
+*.nupkg
+
+# OS-generated files
+.DS_Store
+Thumbs.db

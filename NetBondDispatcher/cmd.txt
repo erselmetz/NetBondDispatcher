@@ -1,0 +1,5 @@
+publish
+dotnet publish -c Release -r win-x64 --self-contained -p:PublishSingleFile=true -o ./Publish
+
+package
+vpk pack -u NetBondDispatcher -v 1.0.0 -p ./Publish -e NetBondDispatcher.exe --icon Assets/app.ico
