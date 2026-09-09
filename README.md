@@ -37,17 +37,6 @@ By binding outgoing sockets directly to specific local network adapters, it dist
 
 ---
 
-## Screenshots
-
-| System Dashboard | Bonded Network Adapters |
-| :---: | :---: |
-| *(Add your screenshot here)* | *(Add your screenshot here)* |
-
-| Parallel Downloader | Settings & Updates |
-| :---: | :---: |
-| *(Add your screenshot here)* | *(Add your screenshot here)* |
-
----
 
 ## Installation & Setup
 
